@@ -22,11 +22,13 @@ if __name__ == '__main__':
         f.write(wordle.CHOSEN)
     while True:
         guessIt = wordle.Guess(
-            w_str=input(">")
+            w_str=input(f"[{wordle.Guess.counter}]>")
         )
         if guessIt.isValid():
             guessIt.applyGuess()
+            guessIt.wincheck()
             guessIt.increment()
+            guessIt.losscheck()
             #print(wordle.Guess.counter)
         else:
             print("Invalid word, try again")
