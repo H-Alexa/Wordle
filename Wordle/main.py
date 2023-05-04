@@ -19,8 +19,8 @@ begin_message = begin_message.replace("#", f"{wordle.Color.GREEN}O{wordle.Color.
 print(begin_message)
 print("Input a 5 letter word (in lowercase) to begin \n")
 if __name__ == '__main__':
-    with open("cheat.txt","w") as f:
-        f.write(wordle.CHOSEN)
+    #with open("cheat.txt","w") as f:
+        #f.write(wordle.CHOSEN)
     while True:
         guessIt = wordle.Guess(
             w_str=input(f"[{wordle.Guess.counter}]>")
