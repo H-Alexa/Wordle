@@ -17,6 +17,35 @@ class Color:
 class Guess:
     counter = 1
     words = []
+    alphabet = {    
+        "a": "a",
+        "b": "b",
+        "c": "c",
+        "d": "d",
+        "e": "e",
+        "f": "f",
+        "g": "g",
+        "h": "h",
+        "i": "i",
+        "j": "j",
+        "k": "k",
+        "l": "l",
+        "m": "m",
+        "n": "n",
+        "o": "o",
+        "p": "p",
+        "q": "q",
+        "r": "r",
+        "s": "s",
+        "t": "t",
+        "u": "u",
+        "v": "v",
+        "w": "w",
+        "x": "x",
+        "y": "y",
+        "z": "z",
+        }
+
     def __init__(self,w_str:str):
         self.w_str = w_str
         self.w_chars = list(self.w_str)
@@ -35,14 +64,27 @@ class Guess:
             if actualChar == guessedChar:
                 colored =  f"{Color.GREEN}{actualChar}{Color.BASE}"
                 self.w_chars[i] = colored
+                self.editAlpha(actualChar,colored)
     
     def applyYellows(self):
         for i, _ in enumerate(self.w_chars):
             guessedChar = self.w_chars[i]
+            notInGreen = Color.GREEN not in Guess.alphabet.get(guessedChar, "")
             if guessedChar in CHOSEN:
                 colored = f"{Color.YELLOW}{guessedChar}{Color.BASE}"
                 self.w_chars[i] = colored
+                if notInGreen:
+                    self.editAlpha(guessedChar,colored)
+            else:
+                colored = f"{Color.RED}{guessedChar}{Color.BASE}"
+                self.editAlpha(guessedChar,colored)
+
     
+    def editAlpha (self,k,d):
+        if k not in Guess.alphabet.keys():
+            return
+        Guess.alphabet[k] = d
+
     def applyGuess(self):
         self.applyGreens()
         self.applyYellows()

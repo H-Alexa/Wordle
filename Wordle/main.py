@@ -1,5 +1,6 @@
 import wordle
 import os
+import sys
 
 os.system("cls") if os.name == "nt" else os.system("clear")
 
@@ -24,6 +25,14 @@ if __name__ == '__main__':
         guessIt = wordle.Guess(
             w_str=input(f"[{wordle.Guess.counter}]>")
         )
+        if guessIt.w_str == "h":
+            listValue = list(wordle.Guess.alphabet.values())
+            for element in listValue:
+                if listValue[-1]!= element:
+                    print(element,end=" ")
+                else :
+                    print(element)
+            continue
         if guessIt.isValid():
             guessIt.applyGuess()
             guessIt.wincheck()
