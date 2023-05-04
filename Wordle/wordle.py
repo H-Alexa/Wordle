@@ -1,4 +1,5 @@
 import random
+import sys
 from validWords import valid 
 
 CHOSEN = random.choice(valid)
@@ -15,6 +16,7 @@ class Color:
 
 class Guess:
     counter = 1
+    words = []
     def __init__(self,w_str:str):
         self.w_str = w_str
         self.w_chars = list(self.w_str)
@@ -45,13 +47,18 @@ class Guess:
         self.applyGreens()
         self.applyYellows()
         self.post_guess_w_str="".join(self.w_chars)
+        Guess.words.append(self.post_guess_w_str)
         print(self.post_guess_w_str)
 
     def wincheck(self):
         if self.w_str == CHOSEN:
-            print(f"Congratulations! You succeded of {CHANCES}th attempt")
+            print(f"Congratulations! You succeded at {Guess.counter}th attempt")
+            for element in Guess.words:
+                print(element)
+            sys.exit(0)
 
 
     def losscheck(self):
         if self.counter == CHANCES+1:
             print(f"Sorry, you lost. The word was {CHOSEN}")
+            sys.exit(0)
