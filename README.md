@@ -1,4 +1,4 @@
-#Wordle
+
 
 Wordle game with 2000 words to play in terminal.
 
