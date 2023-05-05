@@ -2,8 +2,6 @@ import wordle, help
 import os, sys
 import argparse
 
-os.system("cls") if os.name == "nt" else os.system("clear")
-
 begin_message = """
 '##:::::'##::'#######::'########::'########::'##:::::::'########:
  ##:'##: ##:'##.... ##: ##.... ##: ##.... ##: ##::::::: ##.....::
@@ -22,12 +20,17 @@ instruction = instruction.replace("yellow", f"{wordle.Color.YELLOW}{wordle.Color
 instruction = instruction.replace("grey", f"{wordle.Color.GREY}{wordle.Color.BOLD}grey{wordle.Color.BASE}")
 
 
-print(begin_message)
-print(instruction)
-print("Input a 5 letter word (in lowercase) to begin \n")
+def start():
+    os.system("cls") if os.name == "nt" else os.system("clear")
+
+    print(begin_message)
+    print(instruction)
+    print("Input a 5 letter word (in lowercase) to begin \n")
 
 
 def main():
+    start()
+
     while True:
         guessIt = wordle.Guess(
             w_str=input(f"[{wordle.Guess.counter}]>")
